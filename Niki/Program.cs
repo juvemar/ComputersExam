@@ -3,23 +3,23 @@
     using System;
     using System.Collections.Generic;
 
-    class Computers
+    public class Computers
     {
-        static Computer pc, laptop, server;
-        public static void main()
+        private static Computer pc, laptop, server;
+        public static void Main()
         {
             var manufacturer = Console.ReadLine();
             if (manufacturer == "HP")
             {
-                var ram = new Rammstein(Eight / 4);
+                var ram = new Rammstein(2);
                 var videoCard = new HardDriver() { IsMonochrome = false };
-                pc = new Computer(Computers.Type.PC, new Cpu(Eight / 4, 32, ram, videoCard), ram, new[] { new HardDriver(500, false, 0) }, videoCard, null);
+                pc = new Computer(Computers.Type.PC, new Cpu(2, 32, ram, videoCard), ram, new[] { new HardDriver(500, false, 0) }, videoCard, null);
 
-                var serverRam = new Rammstein(Eight * 4);
+                var serverRam = new Rammstein(32);
                 var serverVideo = new HardDriver();
                 server = new Computer(
                     Computers.Type.SERVER,
-                    new Cpu(Eight / 2,
+                    new Cpu(4,
                         32, serverRam, serverVideo),
                     serverRam,
                     new List<HardDriver>{
@@ -32,10 +32,10 @@
                         IsMonochrome
                             = false
                     };
-                    var ram1 = new Rammstein(Eight / 2);
+                    var ram1 = new Rammstein(4);
                     laptop = new Computer(
                         Computers.Type.LAPTOP,
-                        new Cpu(Eight / 4, 64, ram1, card),
+                        new Cpu(4, 64, ram1, card),
                         ram1,
                         new[]
                             {
@@ -48,17 +48,17 @@
             }
             else if (manufacturer == "Dell")
             {
-                var ram = new Rammstein(Eight); var videoCard = new HardDriver() { IsMonochrome = false };
-                pc = new Computer(Computers.Type.PC, new Cpu(Eight / 2, 64, ram, videoCard), ram, new[] { new HardDriver(1000, false, 0) }, videoCard, null);
-                var ram1 = new Rammstein(Eight * Eight);
+                var ram = new Rammstein(8); var videoCard = new HardDriver() { IsMonochrome = false };
+                pc = new Computer(Computers.Type.PC, new Cpu(4, 64, ram, videoCard), ram, new[] { new HardDriver(1000, false, 0) }, videoCard, null);
+                var ram1 = new Rammstein(64);
                 var card = new HardDriver(); server = new Computer(Computers.Type.SERVER,
-                     new Cpu(Eight, 64, ram1, card),
+                     new Cpu(8, 64, ram1, card),
                      ram1,
                      new List<HardDriver>{
                             new HardDriver(0, true, 2, new List<HardDriver> { new HardDriver(2000, false, 0), new HardDriver(2000, false, 0) })
-                        }, card, null); var ram2 = new Rammstein(Eight); var videoCard1 = new HardDriver() { IsMonochrome = false };
+                        }, card, null); var ram2 = new Rammstein(8); var videoCard1 = new HardDriver() { IsMonochrome = false };
                 laptop = new Computer(Computers.Type.LAPTOP,
-                    new Cpu(Eight / 2, ((32)), ram2, videoCard1),
+                    new Cpu(4, ((32)), ram2, videoCard1),
                     ram2,
                     new[] { new HardDriver(1000, false, 0) },
                     videoCard1,
@@ -144,7 +144,6 @@
             }
         }
         public class InvalidArgumentException : ArgumentException { public InvalidArgumentException(string message) : base(message) { } }
-        const int Eight = 8;
         public enum Type { PC, LAPTOP, SERVER, }
 
 
